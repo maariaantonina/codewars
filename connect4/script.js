@@ -6,29 +6,26 @@ class Connect4 {
     this.round = 0;
   }
   check() {
+    //check columns
     for (let column of this.columns) {
-      if (column.toString().indexOf('p1,p1,p1,p1') > -1) this.isWon = true;
-      if (column.toString().indexOf('p2,p2,p2,p2') > -1) this.isWon = true;
-      if (this.columns.indexOf(column) <= 3) {
-        for (let element of column) {
-          if (
-            element ==
-              this.columns[this.columns.indexOf(column) + 1][
-                column.indexOf(element)
-              ] &&
-            element ==
-              this.columns[this.columns.indexOf(column) + 2][
-                column.indexOf(element)
-              ] &&
-            element ==
-              this.columns[this.columns.indexOf(column) + 3][
-                column.indexOf(element)
-              ]
-          ) {
-            this.isWon = true;
-          }
-        }
+      if (
+        column.toString().indexOf('p1,p1,p1,p1') > -1 ||
+        column.toString().indexOf('p2,p2,p2,p2') > -1
+      )
+        this.isWon = true;
+    }
+    //check rows
+    for (let i = 0; i < 6; i++) {
+      let row = '';
+      for (let column of this.columns) {
+        row += column[i].toString();
+        console.log(row);
       }
+      if (
+        row().indexOf('p1,p1,p1,p1') > -1 ||
+        row().indexOf('p2,p2,p2,p2') > -1
+      )
+        this.isWon = true;
     }
   }
   changePlayer() {
