@@ -14,18 +14,37 @@ class Connect4 {
       )
         this.isWon = true;
     }
+
     //check rows
     for (let i = 0; i < 6; i++) {
       let row = '';
       for (let column of this.columns) {
-        row += column[i].toString();
-        console.log(row);
+        if (column[i]) row += column[i].toString();
       }
-      if (
-        row().indexOf('p1,p1,p1,p1') > -1 ||
-        row().indexOf('p2,p2,p2,p2') > -1
-      )
+      if (row.indexOf('p1p1p1p1') > -1 || row.indexOf('p2p2p2p2') > -1)
         this.isWon = true;
+    }
+
+    //check diagonal
+    for (let i = 0; i < 3; i++) {
+      let diag = '';
+      for (let j = 0; j < 4; j++) {
+        if (
+          this.columns[j][i] &&
+          this.columns[j + 1][i + 1] &&
+          this.columns[j + 2][i + 2] &&
+          this.columns[j + 3][i + 3]
+        ) {
+          diag =
+            this.columns[j][i].toString() +
+            this.columns[j + 1][i + 1].toString() +
+            this.columns[j + 2][i + 2].toString() +
+            this.columns[j + 3][i + 3].toString();
+          console.log('diag', diag);
+        }
+        if (diag.indexOf('p1p1p1p1') > -1 || diag.indexOf('p2p2p2p2') > -1)
+          this.isWon = true;
+      }
     }
   }
   changePlayer() {
