@@ -40,7 +40,26 @@ class Connect4 {
             this.columns[j + 1][i + 1].toString() +
             this.columns[j + 2][i + 2].toString() +
             this.columns[j + 3][i + 3].toString();
-          console.log('diag', diag);
+        }
+        if (diag.indexOf('p1p1p1p1') > -1 || diag.indexOf('p2p2p2p2') > -1)
+          this.isWon = true;
+      }
+    }
+
+    for (let i = 0; i < 3; i++) {
+      let diag = '';
+      for (let j = 3; j < 7; j++) {
+        if (
+          this.columns[j][i] &&
+          this.columns[j - 1][i + 1] &&
+          this.columns[j - 2][i + 2] &&
+          this.columns[j - 3][i + 3]
+        ) {
+          diag =
+            this.columns[j][i].toString() +
+            this.columns[j - 1][i + 1].toString() +
+            this.columns[j - 2][i + 2].toString() +
+            this.columns[j - 3][i + 3].toString();
         }
         if (diag.indexOf('p1p1p1p1') > -1 || diag.indexOf('p2p2p2p2') > -1)
           this.isWon = true;
